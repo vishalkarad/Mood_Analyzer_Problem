@@ -33,4 +33,15 @@ public class MoodAnalyzerTestClass {
             Assert.assertEquals(MoodAnalysisException.MyException_Type.EMPTY,e.type);
         }
     }
+    @Test
+    public void givenMoodAnaliserDefaultCustructor_WhenProper_ThenReturnObject() {
+        try{
+            MoodAnalyzer mood = new MoodAnalyzer();
+            MoodAnalyzer analyzemood = MoodAnalyserFactory.createMoodAnalyzer();
+            boolean result = analyzemood.equals(mood);
+            Assert.assertEquals(true,result);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }

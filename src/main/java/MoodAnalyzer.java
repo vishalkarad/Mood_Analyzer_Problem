@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class MoodAnalysisException extends Exception {
     enum MyException_Type{
         EMPTY,NULL;
@@ -15,6 +17,8 @@ public class MoodAnalyzer {
     private String message;
     public static void main(String[] args) {
         System.out.println("***************Welcome To Mood Analyzer***************");
+        MoodAnalyzer moodAnalyzerObject=new MoodAnalyzer();
+
     }
     // Method that return the mood
     public String moodAnalyzer(String mood) throws MoodAnalysisException {
@@ -42,5 +46,12 @@ public class MoodAnalyzer {
     public MoodAnalyzer(String message) {
         this.message=message;
     }
-
+    // Check two object equals or not
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MoodAnalyzer that = (MoodAnalyzer) o;
+        return Objects.equals(message, that.message);
+    }
 }
