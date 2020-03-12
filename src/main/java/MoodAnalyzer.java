@@ -1,18 +1,37 @@
+class MoodAnalysisException extends Exception {
+    enum MyException_Type{
+        EMPTY,NULL;
+    }
+    MyException_Type type;
+    MyException_Type exceptionMessage;
+    MoodAnalysisException(MyException_Type type,String message) {
+        super(message);
+        this.type=type;
+        System.out.println(message);
+    }
+}
+
 public class MoodAnalyzer {
     private String message;
     public static void main(String[] args) {
         System.out.println("***************Welcome To Mood Analyzer***************");
     }
     // Method that return the mood
-    public String moodAnalyzer(String mood) {
+    public String moodAnalyzer(String mood) throws MoodAnalysisException {
+
        try {
+
+           if(message.length()==0){
+               throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.EMPTY,"You entered empty,please enter valid mood");
+           }
            if (message.contains("sad")) {
                return ("sad");
            } else if (message.contains("happy")) {
                return ("happy");
            }
+
        }catch (NullPointerException e){
-           return ("happy");
+           throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.NULL,"You entered null,please enter valid mood");
        }
        return (mood);
     }
@@ -23,4 +42,5 @@ public class MoodAnalyzer {
     public MoodAnalyzer(String message) {
         this.message=message;
     }
+
 }
