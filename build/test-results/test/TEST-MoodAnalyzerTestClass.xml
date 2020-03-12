@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MoodAnalyzerTestClass" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-12T04:49:18" hostname="admin1-LIVA-Z2V" time="0.02">
+  <properties/>
+  <testcase name="givenMeassage_whenInvalid_thenReturnMood" classname="MoodAnalyzerTestClass" time="0.02"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
