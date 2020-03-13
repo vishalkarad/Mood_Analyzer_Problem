@@ -3,6 +3,25 @@ import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserFactory {
 
+    // Return class object when class name improper with parameter
+    public static Object getClassNameImproperWithParameter(String className,Class methodName,String mood) throws MoodAnalysisException {
+        try {
+            Class<?> moodAnalyzer = Class.forName(className);
+            Constructor<?> construct = moodAnalyzer.getConstructor(methodName);
+            return construct.newInstance(mood);
+        } catch (ClassNotFoundException e){
+            throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.CLASS_NOT_FOUND,"Please enter valid Class neme");
+        } catch (NoSuchMethodException e){
+            throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,"Please enter valid method neme");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return(mood);
+    }
     // Return class object with parameter constructor
     public static Object getParameterizConstructor(String className,Class methodName,String mood) throws MoodAnalysisException {
         try {
@@ -20,7 +39,7 @@ public class MoodAnalyserFactory {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        return ("");
+        return (mood);
     }
     // Return class object
     public static Constructor<?> getConstructor(String className,Class methodName) throws MoodAnalysisException {

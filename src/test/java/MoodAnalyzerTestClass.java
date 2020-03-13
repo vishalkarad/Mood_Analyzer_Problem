@@ -66,11 +66,22 @@ public class MoodAnalyzerTestClass {
     public void givenMoodAnaliserParameterCustructor_WhenProper_ThenReturnObject() {
         try{
             MoodAnalyzer mood = new MoodAnalyzer("i am in happy mood");
-            Object obj=MoodAnalyserFactory.getParameterizConstructor("MoodAnalyzer",String.class,"i am in happy mood");
-            boolean result = obj.equals(mood);
+            Object returnMood=MoodAnalyserFactory.getParameterizConstructor("MoodAnalyzer",String.class,"i am in happy mood");
+            boolean result = returnMood.equals(mood);
             Assert.assertEquals(true,result);
         }catch(Exception e){
             e.printStackTrace();
+        }
+    }
+    @Test
+    public void givenClassNameWithParameter_WhenImproper_ThenThrowMoodAnalysisException() {
+        try{
+            MoodAnalyzer mood = new MoodAnalyzer("i am in happy mood");
+            Object returnMood=MoodAnalyserFactory.getClassNameImproperWithParameter("MoodAnalyze",String.class,"i am in happy mood");
+            boolean result=returnMood.equals(mood);
+            Assert.assertEquals(true,result);
+        }catch(MoodAnalysisException e){
+            Assert.assertEquals(MoodAnalysisException.MyException_Type.CLASS_NOT_FOUND,e.type);
         }
     }
 }
