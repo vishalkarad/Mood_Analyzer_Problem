@@ -53,4 +53,5 @@ public class MoodAnalyzerTestClass {
             Assert.assertEquals(MoodAnalysisException.MyException_Type.CLASS_NOT_FOUND,e.type);
         }
     }
+
 }

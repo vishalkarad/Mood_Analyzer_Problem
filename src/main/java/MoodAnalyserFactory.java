@@ -9,7 +9,7 @@ public class MoodAnalyserFactory {
             Class<?> moodAnalyzer = Class.forName(className);
             return moodAnalyzer.getConstructor(methodName);
         } catch (ClassNotFoundException e){
-        throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.CLASS_NOT_FOUND,"Please enter valid Class neme");
+            throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.CLASS_NOT_FOUND,"Please enter valid Class neme");
         } catch (NoSuchMethodException e){
             throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,"Please enter valid method neme");
         }
@@ -23,8 +23,6 @@ public class MoodAnalyserFactory {
             return (MoodAnalyzer) instance;
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
-        //} catch (ClassNotFoundException e) {
-            //e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
