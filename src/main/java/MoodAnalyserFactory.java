@@ -3,6 +3,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserFactory {
 
+    // Return message
     public static String moodAnalyzer(MoodAnalyzer message,String methodName) throws MoodAnalysisException {
         try {
             return (String)message.getClass().getMethod(methodName).invoke(message);

@@ -113,6 +113,24 @@ public class MoodAnalyzerTestClass {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenHappyMessage_WhenImproperMethod_ShouldThrowMoodAnalysisException() {
+        try {
+            Constructor<?> constructor = MoodAnalyserFactory.getConstructor("MoodAnalyzer",Integer.class);
+            Object instance = constructor.newInstance("i am in happy mood");
+            String analyser = MoodAnalyserFactory.moodAnalyzer ( (MoodAnalyzer) instance ,"moodAnalyzer") ;
+            Assert.assertEquals("happy",analyser);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,e.type);
+        }
+    }
 }
 
 
