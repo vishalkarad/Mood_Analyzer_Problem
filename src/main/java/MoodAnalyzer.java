@@ -45,7 +45,6 @@ public class MoodAnalyzer {
     public MoodAnalyzer(String message) {
         this.message=message;
     }
-    // Check two object equals or not
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
