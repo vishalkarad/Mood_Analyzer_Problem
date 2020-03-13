@@ -3,6 +3,14 @@ import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserFactory {
 
+    public static String moodAnalyzer(MoodAnalyzer message,String methodName) throws MoodAnalysisException {
+        try {
+            return (String)message.getClass().getMethod(methodName).invoke(message);
+        } catch (Exception e) {
+            //throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,"Please enter valid method neme");
+        }
+        return null;
+    }
     // Return class object when class name improper with parameter
     public static Object getClassNameImproperWithParameter(String className,Class methodName,String mood) throws MoodAnalysisException {
         try {
