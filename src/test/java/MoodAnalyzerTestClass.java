@@ -141,6 +141,19 @@ public class MoodAnalyzerTestClass {
             e.printStackTrace();
         }
     }
+    @Test
+    public void givenSetField_WhenImproper_ThenThrowException() throws MoodAnalysisException {
+        try {
+            Constructor<?> constructor = MoodAnalyserFactory.getConstructor("MoodAnalyzer",String.class);
+            MoodAnalyzer moodAnalyze = MoodAnalyserFactory.createMoodAnalyzer();
+            MoodAnalyserFactory.setFieldMoodAnalyser(moodAnalyze,"messa","i am in happy mood");
+            String analyser = MoodAnalyserFactory.moodAnalyzer ( (MoodAnalyzer)moodAnalyze ,"moodAnalyzer") ;
+            //System.out.println("  analyser"+analyser);
+            Assert.assertEquals("null",analyser);
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.MyException_Type.NO_SUCH_FIELD,e.type);
+        }
+    }
 }
 
 

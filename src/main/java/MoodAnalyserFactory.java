@@ -5,11 +5,13 @@ import java.lang.reflect.InvocationTargetException;
 public class MoodAnalyserFactory {
 
     // set the field value
-    public static String setFieldMoodAnalyser(MoodAnalyzer mood,String fieldName,String fieldValue){
+    public static String setFieldMoodAnalyser(MoodAnalyzer mood,String fieldName,String fieldValue) throws MoodAnalysisException {
         try{
             Field field = mood.getClass().getDeclaredField(fieldName);
             field.setAccessible(true);
             field.set(mood,fieldValue);
+        }catch(NoSuchFieldException e){
+            throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.NO_SUCH_FIELD,"Please enter valid field name ");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -20,8 +22,9 @@ public class MoodAnalyserFactory {
         try {
             return (String)message.getClass().getMethod(methodName).invoke(message);
         } catch (Exception e) {
-            //throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,"Please enter valid method neme");
+            e.printStackTrace();
         }
+
         return null;
     }
     // Return class object when class name improper with parameter
