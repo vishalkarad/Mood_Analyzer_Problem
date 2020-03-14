@@ -7,6 +7,9 @@ public class MoodAnalyserFactory {
     // set the field value
     public static String setFieldMoodAnalyser(MoodAnalyzer mood,String fieldName,String fieldValue) throws MoodAnalysisException {
         try{
+            if(fieldValue == null){
+                throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.NULL,"You enter a null. Enter a valied String");
+            }
             Field field = mood.getClass().getDeclaredField(fieldName);
             field.setAccessible(true);
             field.set(mood,fieldValue);
@@ -18,7 +21,7 @@ public class MoodAnalyserFactory {
         return null;
     }
     // Return message
-    public static String moodAnalyzer(MoodAnalyzer message,String methodName) throws MoodAnalysisException {
+    public static String moodAnalyzer(MoodAnalyzer message, String methodName) {
         try {
             return (String)message.getClass().getMethod(methodName).invoke(message);
         } catch (Exception e) {
