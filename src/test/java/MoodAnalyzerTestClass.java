@@ -97,7 +97,6 @@ public class MoodAnalyzerTestClass {
             Assert.assertEquals(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,e.type);
         }
     }
-
     @Test
     public void givenHappy_WhenProper_ThenReturnHappyMood() throws MoodAnalysisException {
         try {
@@ -113,7 +112,6 @@ public class MoodAnalyzerTestClass {
             e.printStackTrace();
         }
     }
-
     @Test
     public void givenHappyMessage_WhenImproperMethod_ShouldThrowMoodAnalysisException() {
         try {
@@ -129,6 +127,18 @@ public class MoodAnalyzerTestClass {
             e.printStackTrace();
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,e.type);
+        }
+    }
+    @Test
+    public void givenSetHappyMessageWithReflector_ShouldReturnHAPPY() throws MoodAnalysisException {
+        try {
+            Constructor<?> constructor = MoodAnalyserFactory.getConstructor("MoodAnalyzer",String.class);
+            MoodAnalyzer moodAnalyze = MoodAnalyserFactory.createMoodAnalyzer();
+            MoodAnalyserFactory.setFieldMoodAnalyser(moodAnalyze,"message","i am in happy mood");
+            String analyser = MoodAnalyserFactory.moodAnalyzer ( (MoodAnalyzer)moodAnalyze ,"moodAnalyzer") ;
+            Assert.assertEquals("happy",analyser);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

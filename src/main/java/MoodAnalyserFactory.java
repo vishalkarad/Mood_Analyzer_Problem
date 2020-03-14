@@ -1,8 +1,20 @@
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserFactory {
 
+    // set the field value
+    public static String setFieldMoodAnalyser(MoodAnalyzer mood,String fieldName,String fieldValue){
+        try{
+            Field field = mood.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(mood,fieldValue);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
     // Return message
     public static String moodAnalyzer(MoodAnalyzer message,String methodName) throws MoodAnalysisException {
         try {
